@@ -13,13 +13,12 @@ class Cart < ActiveRecord::Base
   end
 
   def add_item(item_id)
-    # @line_item = self.line_items.find(item_id)
-    # if @line_item
-    #   @line_item.quantity += 1
-    # # if self.line_items.ids.include?(item_id)
-    # else
-      self.line_items.new(cart_id: self.id, item_id: item_id)
-      #line_item has an id, quanity, cart_id and item_id
-    # end
+    @existing_item = self.line_items.find_by(id: item_id)
+    if @existing_item
+      @existing_item.quantity += 1
+      @existing_item
+    else
+      self.line_items.new(cart_id: self.id, item_id: item_id, quantity: 1)
+    end
   end
 end
