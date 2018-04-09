@@ -12,4 +12,7 @@ Rails.application.routes.draw do
 
   post 'carts/:id/checkout', to: 'carts#checkout', as: 'checkout'
 
+  # redirect sign out back to homepage for tests
+  get '/users/sign_out', to: 'store#index'
+
 end
