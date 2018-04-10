@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20180405213326) do
   create_table "items", force: :cascade do |t|
     t.string  "title"
     t.integer "inventory"
-    t.float   "price"
+    t.decimal "price"
     t.integer "category_id"
   end
 
