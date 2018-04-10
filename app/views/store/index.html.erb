@@ -1,10 +1,14 @@
+<h1>Categories</h1>
+<p>Click on a category to view items in that category</p>
+
 <% @categories.each do |category| %>
   <%= link_to category.title, category_path(category) %>
 <% end %>
 
+<h3>All Available Items</h3>
 <% @items.each do |item| %>
 
-  <p><%= item.title %> | $<%= item.price.to_f/100 %> | Available: <%=item.inventory%> 
+  <p><%= item.title %> | $<%= item.price.to_f/100 %> | Available: <%=item.inventory%>
     <% if user_signed_in? %>
       <%= button_to 'Add to Cart', line_items_path(item_id: item) %>
     <% end %>
