@@ -17,9 +17,9 @@ class LineItemsController < ApplicationController
 
   def add_item
     @item = Item.find_by(id: params[:item_id])
-    line_item_ids = current_user.current_cart.line_item_ids
+    line_item_ids = current_user.current_cart.item_ids
     if line_item_ids.include?(@item.id)
-      existing_line_item = current_user.current_cart.line_items.find_by(id: @item.id)
+      existing_line_item = current_user.current_cart.line_items.find_by(item_id: @item.id)
       existing_line_item.quantity += 1
       existing_line_item.save
     else

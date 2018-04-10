@@ -16,7 +16,7 @@ class CartsController < ApplicationController
 
   def update_inventory
     @current_cart.line_items.each do |line_item|
-      @item = Item.find_by_id(line_item.id)
+      @item = Item.find_by_id(line_item.item_id)
       @item.inventory -= line_item.quantity
       @item.save
     end
