@@ -1,5 +1,3 @@
-require 'pry'
-
 class Cart < ActiveRecord::Base
   belongs_to :user
   has_many :line_items
@@ -8,7 +6,11 @@ class Cart < ActiveRecord::Base
 
   def total
     total = 0
-    self.items.each {|i| total += i.price }
+    self.line_items.each do |i|
+      item = Item.find_by(id: i.id)
+      amount = item.price * i.quantity
+      total += amount
+    end
     total
   end
 
